@@ -224,7 +224,7 @@ head(temp.res)
 
 # for logn, logl. burr, weibull 
 for (i in 1:length(StudyChemicals_C)){
-  Temp.data <-  EnviroTox_test_selected2 %>% filter(Test.type == "A" & original.CAS==StudyChemicals_C[i]) 
+  Temp.data <-  EnviroTox_test_selected2 %>% filter(Test.type == "C" & original.CAS==StudyChemicals_C[i]) 
   fits <- ssdtools::ssd_fit_dists(Temp.data, left = 'Effect.value',
                                   dists = c('lnorm', 'llogis', 'burrIII3', 'weibull'),
                                   at_boundary_ok=FALSE,computable=TRUE) 
