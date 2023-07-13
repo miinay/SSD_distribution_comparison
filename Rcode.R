@@ -96,14 +96,14 @@ EnviroTox_ssd$ConsensusMoA <- as.factor(EnviroTox_ssd$ConsensusMoA)
 BC_A <- EnviroTox_test_selected2 %>%
   filter(Test.type =="A") %>%
   group_by(original.CAS) %>%
-  summarize(BC = mousetrap::bimodality_coefficient(log10(Effect.value))) %>%
+  dplyr::summarize(BC = mousetrap::bimodality_coefficient(log10(Effect.value))) %>%
   mutate(Bimodal = ifelse(BC >0.555, "Bimodal","Not bimodal") )
 
 # chronic data
 BC_C <- EnviroTox_test_selected2 %>%
   filter(Test.type =="C") %>%
   group_by(original.CAS) %>%
-  summarize(BC = mousetrap::bimodality_coefficient(log10(Effect.value))) %>%
+  dplyr::summarize(BC = mousetrap::bimodality_coefficient(log10(Effect.value))) %>%
   mutate(Bimodal = ifelse(BC >0.555, "Bimodal","Not bimodal") )
 
 ## BC's criteria: 0.555  (Freeman et al., 2013; Pfister et al. 2013)
