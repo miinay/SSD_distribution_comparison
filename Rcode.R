@@ -23,6 +23,7 @@ library(dplyr)
 library(EnvStats)
 library(ggrepel)
 library(cowplot)
+library(mousetrap)
 
 
 
@@ -55,7 +56,7 @@ EnviroTox_test_selected2 <- aggregate(EnviroTox_test_selected$Effect.value,
                                               Test.type=EnviroTox_test_selected$Test.type,
                                               Latin.name=EnviroTox_test_selected$Latin.name),
                                       function(x) geoMean(x) ) %>%
-    rename(Effect.value=x) %>%
+    dplyr::rename(Effect.value=x) %>%
     mutate (Trophic.Level = EnviroTox_taxo[match (.$Latin.name, EnviroTox_taxo$Latin.name) ,"Trophic.Level"] ) %>%
     mutate (Substance=EnviroTox_chem[match (.$original.CAS, EnviroTox_chem$original.CAS) ,"Chemical.name"]) %>%
     separate (Substance, into=c("Short_name"),sep=";",extra="drop" )  %>%
@@ -69,7 +70,7 @@ EnviroTox_ssd <- aggregate(x=as.numeric(EnviroTox_test_selected2$Effect.value),
                            FUN=function(x) mean(log10( x ) ) )  %>%
   mutate(sd=aggregate(EnviroTox_test_selected2$Effect.value,
                       by=list(EnviroTox_test_selected2$original.CAS, EnviroTox_test_selected2$Test.type), function(x) sd(log10( x ) ) )[,3]   )   %>%
-  rename(mean=x) %>%
+  dplyr::rename(mean=x) %>%
   mutate(HC5 = qlnorm (0.05, meanlog=log(10^mean), sdlog=log(10^sd) ) ) %>%
   mutate (Substance=EnviroTox_chem[match (.$original.CAS, EnviroTox_chem$original.CAS) ,"Chemical.name"]) %>%
   mutate (No_species = aggregate(EnviroTox_test_selected2$Latin.name,
