@@ -147,7 +147,7 @@ temp.res <- data.frame(matrix(-9999, ncol= 1 + 8*4 + 6*4, nrow = length(StudyChe
 head(temp.res)
 
 for (i in 1:length(StudyChemicals_A)){
-  Temp.data <- EnviroTox_test_selected2_Acute %>% filter(original.CAS==StudyChemicals_A[i]) 
+  Temp.data <- EnviroTox_test_selected2 %>% filter(Test.type == "A" & original.CAS==StudyChemicals_A[i]) 
   # fit distributions
   fits <- ssdtools::ssd_fit_dists(Temp.data, left = 'Effect.value',
                                   dists = c('lnorm', 'llogis', 'burrIII3', 'weibull'),
@@ -173,20 +173,20 @@ temp.res_acute_example <- temp.res
 
 ### Reshape the result data 
 
-res_aic1 <- select(temp.res_acute_example, c(1:9))
-res_aic2 <- select(temp.res_acute_example, c(1, 10:17))
-res_aic3 <- select(temp.res_acute_example, c(1, 18:25))
-res_aic4 <- select(temp.res_acute_example, c(1, 26:33))
+res_aic1 <- dplyr::select(temp.res_acute_example, c(1:9))
+res_aic2 <- dplyr::select(temp.res_acute_example, c(1, 10:17))
+res_aic3 <- dplyr::select(temp.res_acute_example, c(1, 18:25))
+res_aic4 <- dplyr::select(temp.res_acute_example, c(1, 26:33))
 colnames(res_aic2) <- colnames(res_aic1)
 colnames(res_aic3) <- colnames(res_aic1)
 colnames(res_aic4) <- colnames(res_aic1)
 
 res_aic <- bind_rows(res_aic1, res_aic2, res_aic3, res_aic4)
 
-res_hc1 <- select(temp.res_acute_example, c(1, 34:39))
-res_hc2 <- select(temp.res_acute_example, c(1, 40:45))
-res_hc3 <- select(temp.res_acute_example, c(1, 46:51))
-res_hc4 <- select(temp.res_acute_example, c(1, 52:57))
+res_hc1 <- dplyr::select(temp.res_acute_example, c(1, 34:39))
+res_hc2 <- dplyr::select(temp.res_acute_example, c(1, 40:45))
+res_hc3 <- dplyr::select(temp.res_acute_example, c(1, 46:51))
+res_hc4 <- dplyr::select(temp.res_acute_example, c(1, 52:57))
 colnames(res_hc2) <- colnames(res_hc1)
 colnames(res_hc3) <- colnames(res_hc1)
 colnames(res_hc4) <- colnames(res_hc1)
@@ -224,7 +224,7 @@ head(temp.res)
 
 # for logn, logl. burr, weibull 
 for (i in 1:length(StudyChemicals_C)){
-  Temp.data <- EnviroTox_test_selected2_Chronic %>% filter(original.CAS==StudyChemicals_C[i]) 
+  Temp.data <-  EnviroTox_test_selected2 %>% filter(Test.type == "A" & original.CAS==StudyChemicals_C[i]) 
   fits <- ssdtools::ssd_fit_dists(Temp.data, left = 'Effect.value',
                                   dists = c('lnorm', 'llogis', 'burrIII3', 'weibull'),
                                   at_boundary_ok=FALSE,computable=TRUE) 
@@ -249,20 +249,20 @@ temp.res_chronic_example <- temp.res
 
 ### Reshape the result data 
 
-res_aic1 <- select(temp.res_chronic_example, c(1:9))
-res_aic2 <- select(temp.res_chronic_example, c(1, 10:17))
-res_aic3 <- select(temp.res_chronic_example, c(1, 18:25))
-res_aic4 <- select(temp.res_chronic_example, c(1, 26:33))
+res_aic1 <- dplyr::select(temp.res_chronic_example, c(1:9))
+res_aic2 <- dplyr::select(temp.res_chronic_example, c(1, 10:17))
+res_aic3 <- dplyr::select(temp.res_chronic_example, c(1, 18:25))
+res_aic4 <- dplyr::select(temp.res_chronic_example, c(1, 26:33))
 colnames(res_aic2) <- colnames(res_aic1)
 colnames(res_aic3) <- colnames(res_aic1)
 colnames(res_aic4) <- colnames(res_aic1)
 
 res_aic <- bind_rows(res_aic1, res_aic2, res_aic3, res_aic4)
 
-res_hc1 <- select(temp.res_chronic_example, c(1, 34:39))
-res_hc2 <- select(temp.res_chronic_example, c(1, 40:45))
-res_hc3 <- select(temp.res_chronic_example, c(1, 46:51))
-res_hc4 <- select(temp.res_chronic_example, c(1, 52:57))
+res_hc1 <- dplyr::select(temp.res_chronic_example, c(1, 34:39))
+res_hc2 <- dplyr::select(temp.res_chronic_example, c(1, 40:45))
+res_hc3 <- dplyr::select(temp.res_chronic_example, c(1, 46:51))
+res_hc4 <- dplyr::select(temp.res_chronic_example, c(1, 52:57))
 
 colnames(res_hc2) <- colnames(res_hc1)
 colnames(res_hc3) <- colnames(res_hc1)
