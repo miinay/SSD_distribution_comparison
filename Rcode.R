@@ -295,8 +295,9 @@ temp.res_chronic_clean_3 <- temp.res_chronic_clean_2 %>%
 
 #### 6. Calculate AICc differences and HC5 ratios----
 
-### Acute SSDs
-
+### If any NA values are found in the results of estimation by Burr type III distribution, the rows containing NA values should be removed before running the code below.
+                               
+## Acute SSDs
 # Process the data (acute SSD)
 res_acute <- temp.res_acute_clean_3 %>%
   mutate(BestModel = case_when(delta_lnorm == 0 ~ "lnorm",
@@ -315,8 +316,7 @@ res_acute <- temp.res_acute_clean_3 %>%
 
 
 
-### Chronic SSDs
-
+## Chronic SSDs
 # Process the data (chronic SSD)
 res_chronic <- temp.res_chronic_clean_3 %>%
   mutate(BestModel = case_when(delta_lnorm == 0 ~ "lnorm",
