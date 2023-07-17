@@ -13,8 +13,8 @@ An example R code for analysis and visualization. This code requires an input da
 This dataset "example.xlsx" includes 20,000 test records randomly selected from the "EnviroTox" database only for demonstration.
 All the data used in the study was collected from the "EnviroTox" database (version 2.0.0) (https://envirotoxdatabase.org/).
 
-3. SSD_chronic_figs
-Figures generated from the example R code.
+3. Figures_example_data
+Figures generated from the example data using the R code.
 
 # Publication
 In preparation
