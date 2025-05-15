@@ -17,4 +17,5 @@ All the data used in the study was collected from the "EnviroTox" database (vers
 Figures generated from the example data using the R code.
 
 # Publication
-In preparation
+Miina Yanagihara, Kyoshiro Hiki, Yuichi Iwasaki (2024) Which distribution to choose for deriving a species sensitivity distribution? Implications from analysis of acute and chronic ecotoxicity data. Ecotoxicology and Environmental Safety. 278, 116379.
+https://doi.org/10.1016/j.ecoenv.2024.116379
